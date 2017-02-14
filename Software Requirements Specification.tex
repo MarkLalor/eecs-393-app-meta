@@ -155,6 +155,36 @@ Users.GetClasses & Gets classes a user is subscribed to. \\
 \hline
 \end{tabular}
 
+\section{Documents and Note Sharing}
+\subsection{Description}
+Users will be able to upload images, pdfs, or documents of their notes from the class that is accessible to other individuals in the same classes. Any end user who uploaded any document to CCA will be able to edit or remove the document. 
+\subsection{Stimulus/Response Sequences}
+\begin{tabular}{| p{2cm} | p{12cm} | }
+	\hline
+	Stimulus: & The end user requests to upload a their class notes or course documents. \\
+	Response: & Blob created by uploading a file through an HTTP request, where Blobstore creates a blob from the file’s contents and returns blob reference. \\ \hline
+	Stimulus: & The end user requests to view a file uploaded. \\
+	Response: & Blobstore will return a blob_reader from the blob_key that will return the original file to the end user. \\ \hline
+	Stimulus: & The end user removes a file they uploaded.\\
+	Response: & Blobstore will use the blob_key to delete the correlating file from the storage system.\\
+	\hline
+
+\end{tabular}
+
+\subsection{Functional Requirements}
+
+\begin{tabular}{| p{4.5cm} | p{9.5cm} |}
+\hline
+Document.GetUploader & Application allows access to see who posted a specific document. \\ \hline
+Document.DeleteUpload & Application allows end user to delete a document they uploaded themselves. If the user is not the one who uploaded a file, cannot delete it from the system. \\ \hline
+Document.UploadDate & Retrieves the date that the document was uploaded. \\ \hline
+Document.GetMetadata & Retrieves all the metadata that was entered by the original uploader. Must include class, may optionally (recommended) include date taken and optionally section / chapter number. \\ \hline
+DocumentManager.Upload & Application allows end user who is logged into the application to upload a document. \\ \hline
+DocumentManager.Get & Gets a list of documents for the specified class (can be refined to a certain date or section range). \\
+
+\hline
+\end{tabular}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % EXTERNAL INTERFACE REQUIRMENTS %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
