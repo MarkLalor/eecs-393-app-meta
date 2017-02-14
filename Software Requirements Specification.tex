@@ -1,50 +1,139 @@
+%Copyright 2014 Jean-Philippe Eisenbarth
+%This program is free software: you can 
+%redistribute it and/or modify it under the terms of the GNU General Public 
+%License as published by the Free Software Foundation, either version 3 of the 
+%License, or (at your option) any later version.
+%This program is distributed in the hope that it will be useful,but WITHOUT ANY 
+%WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
+%PARTICULAR PURPOSE. See the GNU General Public License for more details.
+%You should have received a copy of the GNU General Public License along with 
+%this program.  If not, see <http://www.gnu.org/licenses/>.
+
+%Based on the code of Yiannis Lazarides
+%http://tex.stackexchange.com/questions/42602/software-requirements-specification-with-latex
+%http://tex.stackexchange.com/users/963/yiannis-lazarides
+%Also based on the template of Karl E. Wiegers
+%http://www.se.rit.edu/~emad/teaching/slides/srs_template_sep14.pdf
+%http://karlwiegers.com
+
+%Modified for EECS 393 project in Spring 2017
+%Dina Benayad-Cherif, Jason Dong, Mark Lalor, Yousef Mahmoud, Vimig Socrates
 \documentclass{scrreprt}
 \usepackage{listings}
 \usepackage{underscore}
+\usepackage{xcolor}
 \usepackage[bookmarks=true]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
 \hypersetup{
-    bookmarks=false,    % show bookmarks bar?
-    pdftitle={Software Requirement Specification},    % title
-    pdfauthor={Dina Benayad-Cherif, Jason Dong, Mark Lalor, Yousef Mahmoud, Vimig Socrates},                     % author
-    pdfsubject={TeX and LaTeX},                        % subject of the document
-    pdfkeywords={TeX, LaTeX, graphics, images}, % list of keywords
-    colorlinks=true,       % false: boxed links; true: colored links
-    linkcolor=blue,       % color of internal links
-    citecolor=black,       % color of links to bibliography
+    bookmarks=false,
+    pdftitle={Software Requirements Specification},
+    pdfauthor={Dina Benayad-Cherif, Jason Dong, Mark Lalor, Yousef Mahmoud, Vimig Socrates},
+    pdfsubject={EECS 393 Software Requirements Specification},
+    pdfkeywords={SRS, Software, Requirements, Specification},
+    colorlinks=true,        % false: boxed links; true: colored links
+    linkcolor=blue,         % color of internal links
+    citecolor=black,        % color of links to bibliography
     filecolor=black,        % color of file links
     urlcolor=purple,        % color of external links
     linktoc=page            % only page is linked
-}%
-\def\myversion{1.0 }
-\title{%
-\flushright
-\rule{16cm}{5pt}\vskip1cm
-\Huge{SOFTWARE REQUIREMENTS\\ SPECIFICATION}\\
-\vspace{2cm}
-for\\
-\vspace{2cm}
-Class Collaboration Application (CCA)\\
-\vspace{2cm}
-\LARGE{Release 1.0\\}
-\vspace{2cm}
-\LARGE{Version \myversion approved\\}
-\vspace{2cm}
-Prepared by Dina Benayad-Cherif, Jason Dong, Mark Lalor, Yousef Mahmoud, Vimig Socrates\\
-\vfill
-\rule{16cm}{5pt}
 }
+
+\addto\captionsenglish{\renewcommand{\contentsname}{Table Of Contents}}
+\def\myversion{1.0}
 \date{}
+
 \usepackage{hyperref}
 \begin{document}
-\maketitle
+
+% Title Page
+\begin{flushright}
+	\rule{16cm}{5pt}\vskip1cm
+	\Huge{SOFTWARE REQUIREMENTS\\ SPECIFICATION}\\
+	\vspace{2cm}
+	for\\
+	\vspace{2cm}
+	Class Collaboration Application (CCA)\\
+	\vspace{2cm}
+	\LARGE{Release 1.0\\}
+	\vspace{2cm}
+	Prepared by Dina Benayad-Cherif, Jason Dong, Mark Lalor, Yousef Mahmoud, Vimig Socrates\\
+	\vfill
+	\rule{16cm}{5pt}
+\end{flushright}
+
 \tableofcontents
-\chapter*{Revision History}
+
+\section*{Revision History}
+All revisions of the SRS can be seen in the Git commit history of the application's meta repository.
+
+%%%%%%%%%%%%%%%%
+% INTRODUCTION %
+%%%%%%%%%%%%%%%%
 \chapter{Introduction}
 \section{Purpose}
-\section{Project Scope and Product Features}
+This SRS outlines both, the functional and nonfunctional requirements for the first release of Class Collaboration Application (CCA). Overall, this document is meant for the project members that will fully develop CCA. All specifications here, unless otherwise specified, are required for the first release.
+\section{Project Scope }
+The application will allow university students to augment their learning in coursework. The application seeks to connect students through their courses by providing a platform to discuss assignments, share notes, and communicate with one another.
 \section{References}
+\begin{itemize}
+	\item \textit{Google App Engine Python Documentation}. \\
+	\url{https://cloud.google.com/appengine/docs/python}
+	\item Podgurski, Andy. \textit{EECS 393 Lectures. Spring 2017}.
+	\item Wiegers, Karl. \textit{Cafeteria Ordering System (COS) SRS document. November 4, 2002}.
+	\item Wiegers, Karl. \textit{COS Vision and Scope document. November 4, 2002}.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% OVERALL DESCRIPTION %
+%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Overall Description}
 \section{Product Perspective}
 \section{User Classes and Characteristics}
-% add other chapters and sections to suit
+
+%%%%%%%%%%%%%%%%%%%
+% SYSTEM FEATURES %
+%%%%%%%%%%%%%%%%%%%
+\chapter{System Features}
+
+% Authentication and User Information %
+\section{Authentication and User Information}
+\subsection{Description}
+Users will log in with a Google account ending in @case.edu. An account will be created using this authentication. Canvas’ API will be used to identify a user's courses and automatically ask the user to add courses they are in. Every user will have relevant information available in the form of a user profile.
+\subsection{Stimulus/Response Sequences}
+\begin{tabular}{| p{2cm} | p{12cm} | }
+	\hline
+	Stimulus:   & User logs in for the first time with a Google account ending in @case.edu. \\
+	Response:   & Prompts user to fill out basic account information, creates a new user profile in database. Also asks them to authenticate with Canvas to automatically suggest classes. \\ \hline
+	Stimulus:   & User logs in not for the first time. \\
+	Response 1: & Load personalized home page. \\
+	Response 2: & Check Canvas for new assignments. \\ \hline
+	Stimulus:   & User edits his/her profile information or joins more courses. \\
+	Response:   & Update the database with his/her information. \\
+	\hline
+\end{tabular}
+
+\subsection{Functional Requirements}
+
+\begin{tabular}{| p{3cm} | p{11cm} |}
+\hline
+UserManager.New & Creates a new user in the database granted that they are able to authenticate with Google with a *@case.edu email address. \\ \hline
+Users.SetName & Allows user to change their first and/or last name. \\ \hline
+Users.SetClasses & Allows user to modify the classes they are subscribed to. \\ \hline
+Users.GetClasses & Gets classes a user is subscribed to. \\
+\hline
+\end{tabular}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% EXTERNAL INTERFACE REQUIRMENTS %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{External Interface Requirements}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% OTHER NONFUNCTIONAL REQUIRMENTS %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Other Nonfunctional Requirements}
+
+
 \end{document}
