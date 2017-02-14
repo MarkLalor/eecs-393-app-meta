@@ -90,7 +90,37 @@ The application will allow university students to augment their learning in cour
 %%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Overall Description}
 \section{Product Perspective}
-\section{User Classes and Characteristics}
+Our app allows users to join an ecosystem in which students can share notes, discuss solutions, and plan projects and study sessions. This app will target Case Western students (keeping in mind being able to target general college students later). The app creates a way for individuals in a class to connect with his/her peers. The problem with classroom collaboration today is that if you are in a class without friends you are at a huge disadvantage. With our app however the entire class will be able to work together and benefit from each other’s knowledge without having to have a deep connection between classmates.
+\section{Classes and Characteristics}
+
+\section{Operating Environment}
+\begin{itemize}
+	\item The Class Collaboration Application will be able to operate on any modern web browser.
+	\item Google App Engine will be managing our servers.
+	\item Users will have access to the application if they are currently Case students with a Case ID.
+	\item Users may access the application from any location (not limited to the Case network).
+\end{itemize}
+
+\section{Design and Implementation Constraints}
+\begin{itemize}
+	\item Scripts and application will be written in Python on the Google App Engine platform.
+	\item Google Cloud Datastore (schemaless) / Google Query Language will be used to store data.
+	\item User authentication will be handled by Google App Engine.
+	\item Python code will follow PEP8 Style Guide.
+	\item HTML code shall conform to the HTML 5 standard.
+\end{itemize}
+
+\section{User Documentation}
+\begin{itemize}
+	\item Features should be intuitive and minimal enough that users can navigate and interact with the web app without a tutorial.
+	\item The application will contain a FAQ and/or help page that will provide help to the users with common problems.
+\end{itemize}
+
+\section{Assumptions and Dependencies}
+\begin{itemize}
+	\item AS: Users are Case Western Reserve University students.
+	\item DE: The application’s content is defined by the current users. Only courses that have been added by users will appear. The system does not directly integrate with Case Western’s databases to find out what courses exist.
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%
 % SYSTEM FEATURES %
