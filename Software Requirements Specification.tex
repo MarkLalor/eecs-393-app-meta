@@ -155,6 +155,35 @@ Users.GetClasses & Gets classes a user is subscribed to. \\
 \hline
 \end{tabular}
 
+% Communication Channels %
+\section{Communication Channels}
+\subsection{Description}
+Users who have joined specific course pages will have access to communication channels in which all users within that course will be able to communicate with each other. Communication channels will include a general chat for each course page and a chat for each particular assignment and resource that users can discuss.
+
+\subsection{Stimulus/Response Sequences}
+\begin{tabular}{| p{2cm} | p{12cm} | }
+	\hline
+	Stimulus: & User joins a course page. \\
+	Response: & User is granted access to communication channels specific specific to that page. \\ \hline
+	Stimulus: & User sends a message to a communication channel on course page. \\
+	Response: & User’s message delivered to all other users with access to the channel. \\ \hline
+	Stimulus: & User creates a new note, uploads a document, or creates an assignment. \\
+	Response: & Channel is created for that resource. \\
+	\hline
+\end{tabular}
+
+\subsection{Functional Requirements}
+\begin{tabular}{| p{4cm} | p{10cm} |}
+\hline
+User.SelectCoursePage & User is given access to all communication channels within selected course page. \\ \hline
+User.CreateChannel & Channel is created for the particular resource within the selected course. \\ \hline
+User.SelectChannel  & User’s chat area is replaced with the newly selected channel. \\ \hline
+User.SendMessage & User sends message to currently selected channel. \\
+\hline
+\end{tabular}
+
+
+% Documents and Note Sharing %
 \section{Documents and Note Sharing}
 \subsection{Description}
 Users will be able to upload images, pdfs, or documents of their notes from the class that is accessible to other individuals in the same classes. Any end user who uploaded any document to CCA will be able to edit or remove the document. 
