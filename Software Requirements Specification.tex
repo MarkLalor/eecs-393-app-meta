@@ -243,5 +243,28 @@ No Hardware Interfaces have been identified.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Other Nonfunctional Requirements}
 
+\section{Performance Requirements}
+\begin{itemize}
+	\item PE-1: The system shall accommodate up to 100 users at all times. A majority of users will be logged in for long periods of time to send and receive messages, and finish homework, so we estimate an average session to be up to 2 hours of noncontinuous use.
+	\item PE-2: Chat messages sent by users will be visible to others in others in no less than 10 seconds.
+	\item PE-3: The application may be down for at most 1 hour a week for maintenance. 
+\end{itemize}
+
+\section{Safety Requirements}
+No safety requirements have been identified.
+
+\section{Security Requirements}
+\begin{itemize}
+	\item SE-1: Users will be required to have a Case email address and log in through the Google’s authentication system.
+	\item SE-2: Only the administrators of CCA will have direct access to the Course Resource System and Student Information System databases.
+	\item SE-3: Users will only be able to view public class conversations, conversations they previously created, or conversations they have been invited to
+	\item SE-4: Only users who have logged in will be allowed to upload documents to the system
+\end{itemize}
+
+\section{Software Quality Attributes}
+\begin{itemize}
+	\item Availability-1: The CCA will be available to users on the internet 99.5\% of the time.
+\end{itemize}
+
 
 \end{document}
