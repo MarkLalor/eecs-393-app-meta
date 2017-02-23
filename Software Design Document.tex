@@ -1,0 +1,143 @@
+%Copyright 2014 Jean-Philippe Eisenbarth
+%This program is free software: you can 
+%redistribute it and/or modify it under the terms of the GNU General Public 
+%License as published by the Free Software Foundation, either version 3 of the 
+%License, or (at your option) any later version.
+%This program is distributed in the hope that it will be useful,but WITHOUT ANY 
+%WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
+%PARTICULAR PURPOSE. See the GNU General Public License for more details.
+%You should have received a copy of the GNU General Public License along with 
+%this program.  If not, see <http://www.gnu.org/licenses/>.
+
+%Based on the code of Yiannis Lazarides
+%http://tex.stackexchange.com/questions/42602/software-requirements-specification-with-latex
+%http://tex.stackexchange.com/users/963/yiannis-lazarides
+%Also based on the template of Karl E. Wiegers
+%http://www.se.rit.edu/~emad/teaching/slides/srs_template_sep14.pdf
+%http://karlwiegers.com
+
+%Modified for EECS 393 project in Spring 2017
+%Dina Benayad-Cherif, Jason Dong, Mark Lalor, Yousef Mahmoud, Vimig Socrates
+\documentclass{scrreprt}
+\usepackage{listings}
+\usepackage{underscore}
+\usepackage{xcolor}
+\usepackage[bookmarks=true]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\hypersetup{
+    bookmarks=false,
+    pdftitle={Software Design Document},
+    pdfauthor={Dina Benayad-Cherif, Jason Dong, Mark Lalor, Yousef Mahmoud, Vimig Socrates},
+    pdfsubject={EECS 393 Software Design Document},
+    pdfkeywords={SRS, Software, Design},
+    colorlinks=true,        % false: boxed links; true: colored links
+    linkcolor=blue,         % color of internal links
+    citecolor=black,        % color of links to bibliography
+    filecolor=black,        % color of file links
+    urlcolor=purple,        % color of external links
+    linktoc=page            % only page is linked
+}
+
+\addto\captionsenglish{\renewcommand{\contentsname}{Table Of Contents}}
+\def\myversion{1.0}
+\date{}
+
+\usepackage{hyperref}
+\begin{document}
+
+% Title Page
+\begin{flushright}
+	\rule{16cm}{5pt}\vskip1cm
+	\Huge{SOFTWARE DESIGN\\ DOCUMENT}\\
+	\vspace{2cm}
+	for\\
+	\vspace{2cm}
+	Class Collaboration Application (CCA)\\
+	\vspace{2cm}
+	\LARGE{Release \myversion \\}
+	\vspace{2cm}
+	Prepared by Dina Benayad-Cherif, Jason Dong, Mark Lalor, Yousef Mahmoud, Vimig Socrates\\
+	\vfill
+	\rule{16cm}{5pt}
+\end{flushright}
+
+\tableofcontents
+
+%%%%%%%%%%%%%%%%
+% INTRODUCTION %
+%%%%%%%%%%%%%%%%
+
+\chapter{Introduction}
+
+\section{Purpose}
+
+\section{Scope}
+
+\section{Overview}
+
+\section{Reference Material}
+
+%%%%%%%%%%%%%%%%%%%
+% SYSTEM OVERVIEW %
+%%%%%%%%%%%%%%%%%%%
+
+\chapter{System Overview}
+
+%%%%%%%%%%%%%%%%%%%%%
+% PRINCIPAL CLASSES %
+%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Principal Classes}
+	
+\section{}
+
+\section{}
+
+\section{}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% SYSTEM ARCHITECTURE %
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{System Architecture}
+
+\section{Architectural Design}
+
+\section{Decomposition Description}
+
+\section{Design Rationale}
+
+%%%%%%%%%%%%%%%%%%%%
+% CLASS INTERFACES %
+%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Class Interfaces}
+
+\section{Class Student}
+
+\section{Class CaseClass}
+
+\section{Class ClassItem}
+
+\section{Class Document}
+
+\section{Class Chat}
+
+\section{Class ChatMessage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% HUMAN INTERFACE DESIGN %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Human Interface Design}
+
+\section{Overview of User Interface}
+
+\section{Screen Images}
+
+\section{Screen Objects and Actions}
+
+
+\end{document}
