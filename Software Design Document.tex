@@ -96,11 +96,47 @@
 
 \chapter{Principal Classes}
 	
-\section{}
+\section{Student}
+The student contains all user information including, student ID, the name of the student, the courses they are enrolled in, their username and the last time they logged in. A new student is created by checking whether a specific user has previously logged into the Class Collaboration Application.
+\subsection{Responsibilities}
+\begin{itemize}
+	\item Monitoring the current session of the user.
+	\item Querying any user updates to the database. 
+	\item Displays all the courses the student is enrolled in. 
+	\item Recording when the user has gone idle. 
+	\item Uploads and removes documents.
+	\item Can create CourseItems for a specific course.
+	\item Can join or create courses.
+\end{itemize}
 
-\section{}
+\section{Course}
+A Course is able to aggregate all of the information and student created objects that are associated with a particular course. Created objects include all of the CourseItem objects associated with the Course and a single Chat object to be used as the general chat for the Course.
+\subsection{Responsibilities}
+\begin{itemize}
+	\item Presenting to the user all CourseItem objects that have been added to the course from all Students 
+	\item Presenting the Chat object for the course to allow communication between the Student and all other Students with the chat object
+	\item Querying any updates to the Course objects and updating the CourseItem and Chat objects
+\end{itemize}
 
-\section{}
+\section{CourseItem}
+A course item is an assignment, exam, URL, or other document relevant to the course. The CourseItem is a created object that is created by a user in the Student class and will be shared through a Course’s chat object and always accessible on the sidebar. The user who created the CourseItem object will be able to later modify or delete the object.
+\subsection{Responsibilities}
+\begin{itemize}
+	\item Display to the user the name and description of the courseItem
+	\item Allow the creator of the courseItem to modify or delete the courseItem
+	\item Query any updates to the courseItem and update the courseItem accordingly
+	\item Provide a download option so that a Student can download the contents of a course item
+\end{itemize}
+
+\section{Chat}
+A chat is created for each Course and for each CourseItem. Chats are not created by or associated with users in any way, they are only automatically created/exist alongside existing Courses and CourseItems.
+\subsection{Responsibilities}
+\begin{itemize}
+	\item Tracking and recording to the database new messages in the chat. Messages are written to the database immediately (are not written to a buffer/flushed).
+	\item Notifying the client of changes when the client checks (asks) whether any changes (new messages) have occurred.
+	\item Providing specific messages upon request.
+	\item Caching messages as they are accessed to reduce read operations on the database.
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%
 % SYSTEM ARCHITECTURE %
