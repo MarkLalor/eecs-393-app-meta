@@ -157,6 +157,10 @@ A chat is created for each Course and for each CourseItem. Chats are not created
 \section{Decomposition Description}
 
 \section{Design Rationale}
+\hspace{10mm}We decided to use Google App Engine because it is a reliable platform to scale and build web applications. Many web applications are maintained either through IaaS or PaaS. We decided not to use Iaas because, although we can have root access to a VM, we would have to be responsible for managing the resources on the machine including, memory and CPU usage. Since Google App Engine is a PaaS, it manages all of our computational resources for us, so our only responsibility is maintaining the application while Google App Engine would take care of the infrastructure, security and scalability of the Class Collaboration Application. 
+
+\hspace{10mm}For each user, we decided to integrate SSO into our application. Using SSO as a way for users to sign into the application through their Case credentials boosts our security capabilities as well as mitigates the risk of 3rd party applications accessing sensitive information about the user. This also improves user experience where the user does not have to create and keep track of another username and password. 
+
 
 %%%%%%%%%%%%%%%%%%%%
 % CLASS INTERFACES %
