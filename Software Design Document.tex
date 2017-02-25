@@ -91,7 +91,7 @@ This application will be used for students at Case Western Reserve University to
 \textit{SSO (Single Sign-On)} - Acronym of a tool for access control across several independent software systems. 
 
 \section{Overview}
-This document is an overview of the software architecture of the Class Collaboration Application in high detail. We start by providing all the principal classes that the application is built on as well as their responsibilities to the success of the application. Next, we provide diagrams to show the hierarchy of our classes and the archeitectural design. After, we built an general API of the major class methods used to build the functionality of our application. There are also mockups of our UI design included in our design document. 
+This document is an overview of the software architecture of the Class Collaboration Application in high detail. We start by providing all the principal classes that the application is built on as well as their responsibilities to the success of the application. Next, we provide diagrams to show the hierarchy of our classes and the architectural design. Finally, we develop a general API of the major class methods used to build the functionality of our application. There are also mockups of our UI design included in our design document. 
 
 \section{Reference Material}
 \textit{Book Inventory System System Design Document.} December 8 2010. \\
@@ -111,20 +111,20 @@ ZZZ Company. \textit{ZZZ Software Architecture.} October 2 2015.
 \chapter{Principal Classes}
 	
 \section{Student}
-The student contains all user information including, student ID, the name of the student, the courses they are enrolled in, their username and the last time they logged in. A new student is created by checking whether a specific user has previously logged into the Class Collaboration Application.
+The student class contains all user information including student ID, the name of the student, the courses they are enrolled in, their username and the last time they logged in. A new student is created by checking whether a specific user has previously logged into the Class Collaboration Application.
 \subsection{Responsibilities}
 \begin{itemize}
 	\item Monitoring the current session of the user.
-	\item Querying any user updates to the database. 
+	\item Querying any user updates in the database. 
 	\item Displays all the courses the student is enrolled in. 
 	\item Recording when the user has gone idle. 
-	\item Uploads and removes documents.
+	\item Uploads and removes documents their own documents.
 	\item Can create CourseItems for a specific course.
 	\item Can join or create courses.
 \end{itemize}
 
 \section{Course}
-A Course is able to aggregate all of the information and student created objects that are associated with a particular course. Created objects include all of the CourseItem objects associated with the Course and a single Chat object to be used as the general chat for the Course.
+A Course class is able to aggregate all of the information and student created objects that are associated with a particular course. Created objects include all of the CourseItem objects associated with the Course and a single Chat object to be used as the general chat for the Course.
 \subsection{Responsibilities}
 \begin{itemize}
 	\item Presenting to the user all CourseItem objects that have been added to the course from all Students 
@@ -133,7 +133,7 @@ A Course is able to aggregate all of the information and student created objects
 \end{itemize}
 
 \section{CourseItem}
-A course item is an assignment, exam, URL, or other document relevant to the course. The CourseItem is a created object that is created by a user in the Student class and will be shared through a Course’s chat object and always accessible on the sidebar. The user who created the CourseItem object will be able to later modify or delete the object.
+A Course Item class is a reference to an assignment, exam, URL, or other document relevant to the course. The object in code will serve as a container and mainly server metadata information, while the document itself will be stored in the database. The CourseItem is a created object that is created by a user in the Student class and will be shared through a Course’s chat object and always accessible on the sidebar. The user who created the CourseItem object will be able to later modify or delete the object.
 \subsection{Responsibilities}
 \begin{itemize}
 	\item Display to the user the name and description of the courseItem
@@ -150,6 +150,7 @@ A chat is created for each Course and for each CourseItem. Chats are not created
 	\item Notifying the client of changes when the client checks (asks) whether any changes (new messages) have occurred.
 	\item Providing specific messages upon request.
 	\item Caching messages as they are accessed to reduce read operations on the database.
+	\item Displaying active and offline users of chat channel
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -181,9 +182,9 @@ A chat is created for each Course and for each CourseItem. Chats are not created
 \section{Decomposition Description}
 
 \section{Design Rationale}
-\hspace{10mm}We decided to use Google App Engine because it is a reliable platform to scale and build web applications. Many web applications are maintained either through IaaS or PaaS. We decided not to use Iaas because, although we can have root access to a VM, we would have to be responsible for managing the resources on the machine including, memory and CPU usage. Since Google App Engine is a PaaS, it manages all of our computational resources for us, so our only responsibility is maintaining the application while Google App Engine would take care of the infrastructure, security and scalability of the Class Collaboration Application. 
+\hspace{10mm}We have decided to use Google App Engine because it is a reliable platform to scale and build web applications. Many web applications are maintained either through IaaS or PaaS. We decided not to use Iaas because, although we can have root access to a VM, we would have to be responsible for managing the resources on the machine including, memory and CPU usage. Since Google App Engine is a PaaS, it manages all of our computational resources for us, so our only responsibility is maintaining the application while Google App Engine would take care of the infrastructure, security and scalability of the Class Collaboration Application. 
 
-\hspace{10mm}For each user, we decided to integrate SSO into our application. Using SSO as a way for users to sign into the application through their Case credentials boosts our security capabilities as well as mitigates the risk of 3rd party applications accessing sensitive information about the user. This also improves user experience where the user does not have to create and keep track of another username and password. 
+\hspace{10mm}For each user, we decided to integrate SSO into our application. Using SSO as a way for users to sign into the application through their Case credentials boosts our security capabilities as well as mitigates the risk of 3rd party applications accessing sensitive information about the user. This also improves user experience since the user does not have to create and keep track of another username and password. 
 
 
 %%%%%%%%%%%%%%%%%%%%
@@ -193,7 +194,7 @@ A chat is created for each Course and for each CourseItem. Chats are not created
 \chapter{Class Interfaces}
 
 \section{Class Student}
-An instance of Student represents a user who can create CourseItems and 		Courses. A student is also able to upload Documents attached to a CourseItem.
+An instance of Student represents a user who can create CourseItems and Courses. A student is also able to upload Documents attached to a CourseItem.
 
 \subsection{Public Constructor Student}
 \textit{Student(String name, String id, Time lastLogin)} \\
@@ -213,11 +214,11 @@ Returns whether the the current login session is expired.
 
 \subsection{Public Method CreateCourseItem}
 \textit{Boolean CreateCourseItem(dict options, Course course)} \\
-Creates an instance of a CourseItem and returns whether it was 		successfully made.
+Creates an instance of a CourseItem and returns whether it was successfully made.
 
 \subsection{Public Static Method CreateCourse}
 \textit{Boolean CreateCourse(String courseID, String CourseName)} \\
-Creates an instance of a Course and returns whether it was			 successfully made.
+Creates an instance of a Course and returns whether it was	 successfully made.
 
 \subsection{Public Method GetEnrolledCourses}
 \textit{List<Course> GetEnrolledCourses()} \\
@@ -230,14 +231,14 @@ Returns whether a student successfully joined to a preexisting course.
 \section{Class Course}
 
 \subsection{Public Constructor Course}
-\textit{Course(String courseID} \\
+\textit{Course(String courseID)} \\
 Creates a Course object from the supplied courseID. Populates private fields with items from the database queried using courseID.
 
 \subsection{Public Method GetStudents}
 \textit{List<Student> GetStudents()} \\
 Queries the students table of the database to see which students have added this course to their list of courses.
 
-\subsection{Public Method GetCourseItems()}
+\subsection{Public Method GetCourseItems}
 \textit{List<CourseItem> GetCourseItems()} \\
 Queries the database to return a list of all CourseItems associated with the course.
 
@@ -317,11 +318,11 @@ Returns the type of the message.
 \textit{Void GetContent()} \\
 Returns the content associated with the ChatMessage.
 
-\subsection{Private Method GetText()}
+\subsection{Private Method GetText}
 \textit{String GetText()} \\
 Returns the text associated with this ChatMessage
 
-\subsection{Private Method GetURL()}
+\subsection{Private Method GetURL}
 \textit{String GetURL()} \\
 Returns the URL associated with this ChatMessage.
 
@@ -333,9 +334,17 @@ Returns the Student who created the ChatMessage object.
 \textit{Time GetTime()} \\
 Returns the time the ChatMessage object was sent.
 
-\subsection{Public Method Delete()}
+\subsection{Public Method Delete}
 \textit{Void Delete()} \\
 Removes the ChatMessage object from the database. This object will no longer be shown in the Chat object class.
+
+\subsection{Public Method GetActiveUsers}
+\textit{List<Student> GetActiveUsers()} \\
+Returns all the active users in the current chat. 
+
+\subsection{Public Method GetAllUsers}
+\textit{List<Student> GetAllUsers()} \\
+Returns all users currently subscribed to a chat. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 % HUMAN INTERFACE DESIGN %
