@@ -178,7 +178,8 @@ A chat is created for each Course and for each CourseItem. Chats are not created
   \label{fig:SDD_1}
 \end{figure}
 
-\section{Decomposition Description}
+\section{Description of Achitecture Goals}
+The Class Collaboration Application will be hosted by the Google App Engine and users will access the app via a web browser. The app will have access to a database containing lists of all the Courses created for the app, corresponding CourseItems, Documents, and Chatmessages, as well as the Students who have created accounts. The database will save the information for an indefinite amount of time. Our class structures and main use cases by users are shown below. 
 
 \section{Design Rationale}
 \hspace{10mm}We decided to use Google App Engine because it is a reliable platform to scale and build web applications. Many web applications are maintained either through IaaS or PaaS. We decided not to use Iaas because, although we can have root access to a VM, we would have to be responsible for managing the resources on the machine including, memory and CPU usage. Since Google App Engine is a PaaS, it manages all of our computational resources for us, so our only responsibility is maintaining the application while Google App Engine would take care of the infrastructure, security and scalability of the Class Collaboration Application. 
