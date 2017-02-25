@@ -264,7 +264,7 @@ Creates a Document object associated with the specified document ID. This ID is 
 
 \subsection{Public Method Download}
 \textit{Void Download()} \\
-Returns whether document was successfully downloaded to the user's machine.
+Outputs the binary data for the document along with the proper HTTP header (application/octet-stream) to tell the browser to download the file instead of display it.
 
 \subsection{Public Method GetCourseItemID}
 \textit{String GetCourseItemID()} \\
