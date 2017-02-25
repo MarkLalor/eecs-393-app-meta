@@ -194,6 +194,7 @@ A chat is created for each Course and for each CourseItem. Chats are not created
 
 \section{Class Student}
 An instance of Student represents a user who can create CourseItems and 		Courses. A student is also able to upload Documents attached to a CourseItem.
+
 \subsection{Public Constructor Student}
 \textit{Student(String name, String id, Time lastLogin)} \\
 Creates a student object containing the name and Case ID.
@@ -228,9 +229,13 @@ Returns whether a student successfully joined to a preexisting course.
 
 \section{Class Course}
 
+\subsection{Public Constructor Course}
+\textit{Course(String courseID} \\
+Creates a Course object from the supplied courseID. Populates private fields with items from the database queried using courseID.
+
 \subsection{Public Method GetStudents}
 \textit{List<Student> GetStudents()} \\
-Queries the students table of the database to see which students 		have added this course to their list of courses.
+Queries the students table of the database to see which students have added this course to their list of courses.
 
 \subsection{Public Method GetCourseItems()}
 \textit{List<CourseItem> GetCourseItems()} \\
@@ -253,6 +258,10 @@ Adds the document to the already existing CourseItem.
 
 \section{Class Document}
 
+\subsection{Public Constructor Document}
+\textit{Course(Integer documentID} \\
+Creates a Document object associated with the specified document ID. This ID is used to query the database to locate the actual file associated with it.
+
 \subsection{Public Method Download}
 \textit{Void Download()} \\
 Returns whether document was successfully downloaded to the user's machine.
@@ -263,6 +272,10 @@ Returns the unique id associated with the course item.
 
 \section{Class Chat}
 Represents the chat for a course. The Chat object will hold all ChatMessage objects for a course.
+
+\subsection{Public Constructor Chat}
+\textit{Chat(String courseID)} \\
+Creates a Chat object from the supplied courseID. Populates private fields with items from the database queried using courseID. Since there is one chat per course it is ok to use the courseID as a lookup for Courses as well as Chats.
 
 \subsection{Public Method GetChatVersion}
 \textit{Integer GetChatVersion()} \\
@@ -282,6 +295,10 @@ Creates a ChatMessage object with a document attached and sends it to the chat.
 
 \section{Class ChatMessage}
 Represents a single message sent in a Chat. This message can be text or a document.
+
+\subsection{Public Constructor ChatMessage}
+\textit{Chat(String courseID)} \\
+Creates a ChatMessage object associated with the courseID.
 
 \subsection{Public Enum MessageType}
 \textit{} \\
