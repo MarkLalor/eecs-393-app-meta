@@ -1,0 +1,99 @@
+%Copyright 2014 Jean-Philippe Eisenbarth
+%This program is free software: you can 
+%redistribute it and/or modify it under the terms of the GNU General Public 
+%License as published by the Free Software Foundation, either version 3 of the 
+%License, or (at your option) any later version.
+%This program is distributed in the hope that it will be useful,but WITHOUT ANY 
+%WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
+%PARTICULAR PURPOSE. See the GNU General Public License for more details.
+%You should have received a copy of the GNU General Public License along with 
+%this program.  If not, see <http://www.gnu.org/licenses/>.
+
+%Based on the code of Yiannis Lazarides
+%http://tex.stackexchange.com/questions/42602/software-requirements-specification-with-latex
+%http://tex.stackexchange.com/users/963/yiannis-lazarides
+%Also based on the template of Karl E. Wiegers
+%http://www.se.rit.edu/~emad/teaching/slides/srs_template_sep14.pdf
+%http://karlwiegers.com
+
+%Modified for EECS 393 project in Spring 2017
+%Dina Benayad-Cherif, Jason Dong, Mark Lalor, Yousef Mahmoud, Vimig Socrates
+\documentclass{scrreprt}
+\usepackage{listings}
+\usepackage{underscore}
+\usepackage{xcolor}
+\usepackage[bookmarks=true]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\hypersetup{
+    bookmarks=false,
+    pdftitle={Functional Test Plan},
+    pdfauthor={Dina Benayad-Cherif, Jason Dong, Mark Lalor, Yousef Mahmoud, Vimig Socrates},
+    pdfsubject={EECS 393 Functional Test Plan},
+    pdfkeywords={},
+    colorlinks=true,        % false: boxed links; true: colored links
+    linkcolor=blue,         % color of internal links
+    citecolor=black,        % color of links to bibliography
+    filecolor=black,        % color of file links
+    urlcolor=purple,        % color of external links
+    linktoc=page            % only page is linked
+}
+
+\addto\captionsenglish{\renewcommand{\contentsname}{Table Of Contents}}
+\def\myversion{1.0}
+\date{}
+
+\usepackage{hyperref}
+\begin{document}
+
+% Title Page
+\begin{flushright}
+	\rule{16cm}{5pt}\vskip1cm
+	\Huge{Functional Test Plan}\\
+	\vspace{2cm}
+	for\\
+	\vspace{2cm}
+	Class Collaboration Application (CCA)\\
+	\vspace{2cm}
+	\LARGE{Release \myversion \\}
+	\vspace{2cm}
+	Prepared by Dina Benayad-Cherif, Mark Lalor, Yousef Mahmoud, Vimig Socrates\\
+	\vfill
+	\rule{16cm}{5pt}
+\end{flushright}
+
+\tableofcontents
+
+%%%%%%%%%%%%%%%%
+% INTRODUCTION %
+%%%%%%%%%%%%%%%%
+
+\chapter{Introduction}
+
+\section{Purpose}
+
+\section{Objectives}
+
+
+\section{Scope}
+
+
+\section{Reference Material}
+\textit{Book Inventory System System Design Document.} December 8 2010. \\
+ZZZ Company. \textit{ZZZ Software Architecture.} October 2 2015. 
+
+
+\chapter{Test Strategies/Techniques}
+	
+\section{Test Design}
+
+
+\chapter{Project Tasks/Schedule}
+
+\chapter{Exit Criteria}
+
+\chapter{Goals and Deliverables}
+
+
+\end{document}
