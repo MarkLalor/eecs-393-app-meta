@@ -25,11 +25,12 @@
 \usepackage[bookmarks=true]{hyperref}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
+\usepackage{tabularx}
 
 \hypersetup{
     bookmarks=false,
     pdftitle={Functional Test Plan},
-    pdfauthor={Dina Benayad-Cherif, Jason Dong, Mark Lalor, Yousef Mahmoud, Vimig Socrates},
+    pdfauthor={Dina Benayad-Cherif, Yousef Mahmoud, Vimig Socrates},
     pdfsubject={EECS 393 Functional Test Plan},
     pdfkeywords={},
     colorlinks=true,        % false: boxed links; true: colored links
@@ -50,7 +51,7 @@
 % Title Page
 \begin{flushright}
 	\rule{16cm}{5pt}\vskip1cm
-	\Huge{Functional Test Plan}\\
+	\Huge{Functional Test Plan and Specifications}\\
 	\vspace{2cm}
 	for\\
 	\vspace{2cm}
@@ -58,7 +59,7 @@
 	\vspace{2cm}
 	\LARGE{Release \myversion \\}
 	\vspace{2cm}
-	Prepared by Dina Benayad-Cherif, Mark Lalor, Yousef Mahmoud, Vimig Socrates\\
+	Prepared by Dina Benayad-Cherif, Yousef Mahmoud, Vimig Socrates\\
 	\vfill
 	\rule{16cm}{5pt}
 \end{flushright}
@@ -69,31 +70,122 @@
 % INTRODUCTION %
 %%%%%%%%%%%%%%%%
 
+
 \chapter{Introduction}
+This Test Plan version 1.0 is the testing strategy for the Class Collaboration Application. It provides insight on how we will be testing our application so that all features work properly and fail properly in all conditions. 
 
 \section{Purpose}
+This Test Plan goes over:
+\begin{enumerate}
+\item All project information
+\item Testing types and strategies to be used
+\item A testing schedule
+\end{enumerate}
 
 \section{Objectives}
-
+This document is the testing strategy for the Class Collaboration Application (CCA) and to make sure that we meet all of our requirements specified in the Software Requirements Specifications. This plan is meant to be an outline for the individuals testing the functionality of the application and evaluating the quality of the CCA. 
 
 \section{Scope}
+This section of the Test Plan describes the scope of the project Class Collaboration Application. 
 
+Class Collaboration Application will be tested for its functionality on any modern 	web browser and on any operating system. Testing includes, unit testing, integration testing and system testing.
+ 
 
-\section{Reference Material}
-\textit{Book Inventory System System Design Document.} December 8 2010. \\
-ZZZ Company. \textit{ZZZ Software Architecture.} October 2 2015. 
-
+The testing includes testing for functions:
+\begin{itemize}
+\item User login using Single Sign-On (SSO)
+\item Creating a class
+\item Joining a class
+\item Uploading/downloading/removing a file
+\item Class chats operating correctly
+\item Updating a user profile
+\end{itemize}
 
 \chapter{Test Strategies/Techniques}
-	
-\section{Test Design}
+This section of the document is meant to outline the test design and test data for the Class Collaboration Application. 
+
+\begin{enumerate}
+\item Test Design
+\begin{enumerate}
+\item Unit Testing - A type of testing that verifies the application logic based on the program structure
+\item Integration Testing - A type of testing that verifies the system’s functionality according to the Software Design Document.
+\item System Testing - A type of black box testing that evaluates the system’s compliance against specified requirements.
+\end{enumerate}
+\end{enumerate}
 
 
-\chapter{Project Tasks/Schedule}
+\section{Test Cases}
+\begin{center}
+\begin{tabularx}{\linewidth}{lXX}
+Use Case ID & Description & Test Case \\ \hline
+UC-1 & Use Case Login & TC-1 \\ \hline
+UC-2 & Use Case Update User Profile & TC-3 \\ \hline
+UC-3 & Use Case Create a Class & TC-4 \\ \hline
+UC-4 & Use Case Join a Class & TC-4 \\ \hline
+UC-5 & Use Case Upload a Document & TC-5 \\ \hline
+UC-6 & Use Case Download a Document & TC-6 \\ \hline
+UC-7 & Use Case Remove a Document & TC-7 \\ \hline
+UC-8 & Use Case Join a Chat & TC-8 \\ \hline
+UC-9 & Use Case Send a Chat & TC-9 \\ \hline
+UC-10 & Use Case Synchronize Chat & TC-10 \\ \hline
+UC-11 & Use Case Login After Expired Session & TC-11 \\ \hline
+\end{tabularx}
+\end{center}
 
-\chapter{Exit Criteria}
+Table 1 above illustrates all the test cases.
+
+
+\begin{tabularx}{\linewidth}{lXXX}
+
+Test Case & Use Case ID & Description & Expected Result \\ \hline
+TC-1 & UC-1 & User enters a valid Case login username and password. & User is given access to the application \\ \hline
+TC-2 & UC-2 & User edits their bio information in their user profile. & A message shows whether or not the information was successfully saved. \\ \hline
+TC-3 & UC-3 & If the class does not exist in the database, user can create it. & An empty class with a class chat will be populated. \\ \hline
+TC-4 & UC-4 & User is taking a course that exists in the database, they can click to join. & The class will be added to the user’s current courses. \\ \hline
+TC-5 & UC-5 & User uploads  a document to a course. & The document will automatically download from Blobstore and user is the Admin of that document. \\ \hline
+TC-6 & UC-6 & User downloads a document in a course they are enrolled in. & The user will be able to access the document on their local machine. \\ \hline
+TC-7 & UC-7 & Admin of the document uploaded removes the file from the course. & A message will display that it was successfully taken down from the course and the database. \\ \hline
+TC-8 & UC-8 & User joins a class chat. & Chat will show that the User just joined in. \\ \hline
+TC-9 & UC-9 & User sends a chat & Recipients will receive a chat from the user \\ \hline
+TC-10 & UC-10 & Chats synchronize between all users & Chats will be displayed without the need to refresh the page \\ \hline
+TC-11 & UC-11 & Session is idle for 15 minutes. & Pop up message requesting user to login to CCA again. \\ \hline
+\end{tabularx}
+\\
+\\
+\\
+\\
+Table 2 above describes each of the test cases mentioned in Table 1 and the expected results.
+\\
+\\
+\begin{tabularx}{\linewidth}{lX}
+Tester & Test Cases Testing \\ \hline
+Vimig Socrates & TC 1-4 \\ \hline
+Dina Benayad-Cherif & TC 5-7 \\ \hline
+Yousef Mahmoud & TC 8-11 \\ \hline
+\end{tabularx}
+\\
+\\
+\\
+Table 3 above represents who will be testing each of the specifications by March 31, 2017.
 
 \chapter{Goals and Deliverables}
+The goals for this are to accomplish all tasks described in the document, to build a solid testing process, and to verify the current state of the Class Collaboration Application.
 
+\chapter{Inspection Report}
+\begin{center}
+\begin{tabular}{| p{2cm} | p{2cm} | p{6cm} | p{2cm} | p{2cm} |}
+	\hline
+	\multicolumn{5}{ |c| }{\Large Inspection for Functional Test Plan} \\ \hline
+	\multicolumn{3}{ |p{9cm}| }{\textbf{Name of Inspectors:} Vimig Socrates, Dina Benayad-Cherif, and Yousef Mahmoud}  & \multicolumn{2}{ |p{5cm}| }{\textbf{Name of Project:} Class Collaboration Application (CCA)} \\ \hline
+	\multicolumn{5}{ |l| }{\textbf{Name of Deliverable:} Functional Test Plan and Specifications} \\ \hline
+		\multicolumn{3}{ |p{9cm}| }{\textbf{Inspection Date:} 3/27/2017}  & \multicolumn{2}{ |p{5cm}| }{\textbf{Reinspection:} No} \\ \hline
+	Defect \# & Location & Description & Severity & Resolved \\ \hline
+	1 & Throughout & Fixed the formatting of the headers & Min & Yes (Yousef) \\ \hline
+	2 & Table 2 & Fixed some of the descriptions of the test cases & Maj & Yes (Dina) \\ \hline
+	3 & Throughout & Fixed some of the spacing in the section. & Min & Yes (Dina) \\ \hline
+	4 & Testing Strategies &Added some more test cases & Maj & Yes (Yousef) \\ \hline
+	5 & Throughout & Converted full document to Latex and reviewed for consistency of test cases & Maj & Yes (Vimig) \\ \hline
+\end{tabular}
+\end{center}
 
 \end{document}
